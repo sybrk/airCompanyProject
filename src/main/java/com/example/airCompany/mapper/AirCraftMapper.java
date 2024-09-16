@@ -7,8 +7,6 @@ public class AirCraftMapper {
 
     public static AirCraftDto AirCraftDtoMapper(AirCraft airCraft) {
         return new AirCraftDto(airCraft.getName(),airCraft.getPurchaseDate(),
-                                airCraft.getEcoCapacity(),airCraft.getBusinessCapacity(),
-                                airCraft.getStatus(),airCraft.getIsDeleted(),airCraft.getCreatedAt(),
-                                airCraft.getLastModifiedAt());
+                                airCraft.getEcoCapacity(),airCraft.getBusinessCapacity());
     }
 }

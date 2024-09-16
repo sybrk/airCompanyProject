@@ -13,8 +13,4 @@ public class AirCraftDto {
     private Date purchaseDate;
     private int ecoCapacity;
     private int businessCapacity;
-    private String status;
-    private Boolean isDeleted;
-    private Date createdAt;
-    private Date lastModifiedAt;
 }
