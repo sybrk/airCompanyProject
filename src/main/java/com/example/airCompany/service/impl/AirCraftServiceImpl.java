@@ -23,7 +23,10 @@ public class AirCraftServiceImpl implements IAirCraftService {
     @Override
     public AirCraftDto getAirCraftById(int id) {
         AirCraft result = iAirCraftRepository.getById(id);
-        return AirCraftMapper.AirCraftDtoMapper(result);
+        if(result.getIsDeleted() == true) {
+            return null;
+        }
+        return AirCraftMapper.AirCraftEntityToDtoMapper(result);
     }
 
     @Override
@@ -31,11 +34,38 @@ public class AirCraftServiceImpl implements IAirCraftService {
         List<AirCraft> result = iAirCraftRepository.findAll();
         List<AirCraftDto> allAirCrafts = new ArrayList<>();
         for (int i = 0; i < result.size(); i++) {
-            AirCraftDto tmpAirCraftDto = AirCraftMapper.AirCraftDtoMapper(result.get(i));
-            allAirCrafts.add(tmpAirCraftDto);
+            if(result.get(i).getIsDeleted() == false) {
+                AirCraftDto tmpAirCraftDto = AirCraftMapper.AirCraftEntityToDtoMapper(result.get(i));
+                allAirCrafts.add(tmpAirCraftDto);
+            }
         }
         return allAirCrafts;
     }
 
+    @Override
+    public AirCraftDto addNewAirCraft(AirCraftDto newAirCraft) {
 
+        AirCraft savedAirCraft = iAirCraftRepository.save(AirCraftMapper.AirCraftDtoToEntityMapper(newAirCraft));
+
+        return AirCraftMapper.AirCraftEntityToDtoMapper(savedAirCraft);
+    }
+
+    @Override
+    public AirCraftDto updateAirCraft(int id, AirCraftDto airCraftDto) {
+        AirCraft result = iAirCraftRepository.getById(id);
+        result = AirCraftMapper.UpdateAirCraftEntityFromDto(result, airCraftDto);
+        AirCraft updatedAirCraft = iAirCraftRepository.save(result);
+        return AirCraftMapper.AirCraftEntityToDtoMapper(updatedAirCraft);
+    }
+
+    @Override
+    public boolean deleteAirCraft(int id) {
+        AirCraft result = iAirCraftRepository.getById(id);
+        result.setIsDeleted(true);
+        AirCraft deletedAircraft = iAirCraftRepository.save(result);
+        if(deletedAircraft.getIsDeleted() == true) {
+            return true;
+        }
+        return false;
+    }
 }

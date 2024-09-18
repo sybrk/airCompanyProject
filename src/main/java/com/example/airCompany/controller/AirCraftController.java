@@ -4,10 +4,7 @@ import com.example.airCompany.dto.AirCraftDto;
 import com.example.airCompany.service.IAirCraftService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,7 +13,6 @@ import java.util.List;
 public class AirCraftController {
 
     @Autowired
-    @Qualifier()
     private IAirCraftService iAirCraftService;
 
     @GetMapping({"", "/"})
@@ -31,5 +27,20 @@ public class AirCraftController {
     @GetMapping("/all")
     public List<AirCraftDto> getAllAirCrafts() {
         return iAirCraftService.getAllAirCrafts();
+    }
+
+    @PostMapping("/")
+    public AirCraftDto addNewAirCraft(@RequestBody AirCraftDto airCraftDto) {
+        return iAirCraftService.addNewAirCraft(airCraftDto);
+    }
+
+    @PutMapping("/{id}")
+    public AirCraftDto updateAirCraft(@PathVariable int id, @RequestBody AirCraftDto airCraftDto) {
+        return iAirCraftService.updateAirCraft(id, airCraftDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteAirCraft(@PathVariable int id) {
+        return iAirCraftService.deleteAirCraft(id);
     }
 }

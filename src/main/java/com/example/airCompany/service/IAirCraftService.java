@@ -9,4 +9,7 @@ public interface IAirCraftService {
 
     AirCraftDto getAirCraftById(int id);
     List<AirCraftDto> getAllAirCrafts();
+    AirCraftDto addNewAirCraft(AirCraftDto newAirCraft);
+    AirCraftDto updateAirCraft(int id, AirCraftDto newAirCraft);
+    boolean deleteAirCraft(int id);
 }

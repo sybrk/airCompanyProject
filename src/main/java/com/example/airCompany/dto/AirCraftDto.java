@@ -11,6 +11,6 @@ public class AirCraftDto {
 
     private String name;
     private Date purchaseDate;
-    private int ecoCapacity;
-    private int businessCapacity;
+    private Integer ecoCapacity;
+    private Integer businessCapacity;
 }

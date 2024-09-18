@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.CurrentTimestamp;
 
 import java.util.Date;
 
@@ -31,8 +33,10 @@ public class AirCraft {
     private String status;
     @Column(name = "is_deleted", nullable = true)
     private Boolean isDeleted;
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
+    @CreationTimestamp
     private Date createdAt;
+    @CurrentTimestamp
     @Column(name = "last_modified_at")
     private Date lastModifiedAt;
 }
