@@ -14,7 +14,7 @@ public class AirCraftMapper {
         AirCraft tmpAircraft = new AirCraft();
         tmpAircraft.setName(airCraftDto.getName());
         tmpAircraft.setPurchaseDate(airCraftDto.getPurchaseDate());
-        tmpAircraft.setEcoCapacity(airCraftDto.getEcoCapacity());
+        tmpAircraft.setEcoCapacity(airCraftDto.getEcoCapacity() == null ? 123: airCraftDto.getEcoCapacity());
         tmpAircraft.setBusinessCapacity(airCraftDto.getBusinessCapacity());
         return tmpAircraft;
     }

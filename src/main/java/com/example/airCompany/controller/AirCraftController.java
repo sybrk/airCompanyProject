@@ -3,7 +3,6 @@ package com.example.airCompany.controller;
 import com.example.airCompany.dto.AirCraftDto;
 import com.example.airCompany.service.IAirCraftService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +14,15 @@ public class AirCraftController {
     @Autowired
     private IAirCraftService iAirCraftService;
 
+
+
     @GetMapping({"", "/"})
     public String testConnection() {
         return "ok";
     }
     @GetMapping("/{id}")
     public AirCraftDto getAirCraftById(@PathVariable int id ) {
+
         return iAirCraftService.getAirCraftById(id);
     }
 

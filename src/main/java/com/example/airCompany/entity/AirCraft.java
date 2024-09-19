@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name="air_crafts")
 @Table(name="air_crafts" , schema="sinan_air_company")
 public class AirCraft {
     @Id

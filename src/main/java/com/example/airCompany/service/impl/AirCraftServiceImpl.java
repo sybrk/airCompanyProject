@@ -5,6 +5,7 @@ import com.example.airCompany.entity.AirCraft;
 import com.example.airCompany.mapper.AirCraftMapper;
 import com.example.airCompany.repository.IAirCraftRepository;
 import com.example.airCompany.service.IAirCraftService;
+import com.example.airCompany.service.entityManager.IAirCraftRepositoryManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class AirCraftServiceImpl implements IAirCraftService {
 
     private IAirCraftRepository iAirCraftRepository;
 
+    private IAirCraftRepositoryManager iAirCraftRepositoryManager;
 
     @Override
     public AirCraftDto getAirCraftById(int id) {
@@ -31,13 +33,14 @@ public class AirCraftServiceImpl implements IAirCraftService {
 
     @Override
     public List<AirCraftDto> getAllAirCrafts() {
-        List<AirCraft> result = iAirCraftRepository.findAll();
+        //List<AirCraft> result = iAirCraftRepository.findAll();
+        List<AirCraft> result = iAirCraftRepositoryManager.getAll();
         List<AirCraftDto> allAirCrafts = new ArrayList<>();
         for (int i = 0; i < result.size(); i++) {
-            if(result.get(i).getIsDeleted() == false) {
+            //if(result.get(i).getIsDeleted() == false) {
                 AirCraftDto tmpAirCraftDto = AirCraftMapper.AirCraftEntityToDtoMapper(result.get(i));
                 allAirCrafts.add(tmpAirCraftDto);
-            }
+            //}
         }
         return allAirCrafts;
     }

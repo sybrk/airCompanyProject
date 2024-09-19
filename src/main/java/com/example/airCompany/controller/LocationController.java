@@ -27,19 +27,16 @@ public class LocationController {
     }
 
     @PostMapping("/")
-
     public LocationDto addLocation(@RequestBody LocationDto locationDto) {
         return iLocationService.addLocation(locationDto);
     }
 
     @PutMapping("/{id}")
-
     public LocationDto updateLocation( @PathVariable int id, @RequestBody LocationDto locationDto) {
         return iLocationService.updateLocation(id,locationDto);
     }
 
     @DeleteMapping("/{id}")
-
     public boolean deleteLocation( @PathVariable int id) {
         return iLocationService.deleteLocation(id);
     }

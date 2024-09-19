@@ -21,19 +21,26 @@ public class Location {
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+
     @Column(name = "LocationName")
     private String LocationName;
+
     @Column(name = "Country")
     private String Country;
+
     @Column(name = "City")
     private String City;
+
     @Column(name = "Status")
     private String Status;
+
     @Column(name = "IsDeleted", columnDefinition = "boolean default false")
     private Boolean IsDeleted;
+
     @Column(name = "CreatedAt", updatable = false)
     @CreationTimestamp
     private Date CreatedAt;
+
     @Column(name = "LastModifiedAt")
     @CurrentTimestamp
     private Date LastModifiedAt;

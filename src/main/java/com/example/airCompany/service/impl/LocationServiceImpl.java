@@ -31,9 +31,9 @@ public class LocationServiceImpl implements ILocationService {
     public List<LocationDto> getAllLocations() {
         List<Location> result = iLocationRepository.findAll();
         List<LocationDto> locationDtos = new ArrayList<>();
-        for (int i = 0; i < result.size() ; i++) {
-            LocationDto tmpLocationDto = LocationMapper.LocationEntityToDto(result.get(i));
-            if(result.get(i).getIsDeleted() == false) {
+        for (Location location : result) {
+            LocationDto tmpLocationDto = LocationMapper.LocationEntityToDto(location);
+            if (!location.getIsDeleted()) {
                 locationDtos.add(tmpLocationDto);
             }
         }
@@ -60,9 +60,7 @@ public class LocationServiceImpl implements ILocationService {
         Location result = iLocationRepository.getById(id);
         result.setIsDeleted(true);
         Location deletedLocation = iLocationRepository.save(result);
-        if(deletedLocation.getIsDeleted()) {
-            return true;
-        }
-        return false;
+        return deletedLocation.getIsDeleted();
+
     }
 }
