@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CurrentTimestamp;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Date;
 
@@ -14,7 +15,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name="Locations")
 @Table(name="Locations" , schema="sinan_air_company")
 public class Location {
     @Id
@@ -34,8 +35,8 @@ public class Location {
     @Column(name = "Status")
     private String Status;
 
-    @Column(name = "IsDeleted", columnDefinition = "boolean default false")
-    private Boolean IsDeleted;
+    @Column(name = "IsDeleted")
+    private Boolean IsDeleted = false;
 
     @Column(name = "CreatedAt", updatable = false)
     @CreationTimestamp

@@ -20,16 +20,23 @@ public class LocationMapper {
         return location;
     }
 
+
     public static Location UpdateLocationEntityFromDto(Location location, LocationDto locationDto) {
-        if(locationDto.getLocationName() != null) {
-            location.setLocationName(locationDto.getLocationName());
+
+        location.setLocationName(locationDto.getLocationName());
+        location.setCountry(locationDto.getCountry());
+        location.setCity(locationDto.getCity());
+
+        // burada böyle bir mapper yapmaya gerek yok. API DTO istiyorsa DTO objesini tam göndermek front end sorumluluğunda
+        /*if(locationDto.getLocationName() != null) {
+
         }
         if(locationDto.getCountry() != null) {
-            location.setCountry(locationDto.getCountry());
+
         }
         if(locationDto.getCity() != null) {
-            location.setCity(locationDto.getCity());
-        }
+
+        }*/
         return location;
     }
 }

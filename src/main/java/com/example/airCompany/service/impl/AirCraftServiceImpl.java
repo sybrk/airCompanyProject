@@ -33,16 +33,19 @@ public class AirCraftServiceImpl implements IAirCraftService {
 
     @Override
     public List<AirCraftDto> getAllAirCrafts() {
-        //List<AirCraft> result = iAirCraftRepository.findAll();
-        List<AirCraft> result = iAirCraftRepositoryManager.getAll();
+        // below is with JPA repository
+        /*List<AirCraft> result = iAirCraftRepository.findAll();
         List<AirCraftDto> allAirCrafts = new ArrayList<>();
         for (int i = 0; i < result.size(); i++) {
-            //if(result.get(i).getIsDeleted() == false) {
+            if(!result.get(i).getIsDeleted()) {
                 AirCraftDto tmpAirCraftDto = AirCraftMapper.AirCraftEntityToDtoMapper(result.get(i));
                 allAirCrafts.add(tmpAirCraftDto);
-            //}
+            }
         }
-        return allAirCrafts;
+        return allAirCrafts;*/
+        // below is with entitymanager Repo
+        List<AirCraftDto> result = iAirCraftRepositoryManager.getAll();
+        return result;
     }
 
     @Override

@@ -19,8 +19,14 @@ public class AirCraftMapper {
         return tmpAircraft;
     }
 
+
     public static AirCraft UpdateAirCraftEntityFromDto(AirCraft airCraft, AirCraftDto airCraftDto) {
-        if(airCraftDto.getName() != null) {
+        airCraft.setName(airCraftDto.getName());
+        airCraft.setPurchaseDate(airCraftDto.getPurchaseDate());
+        airCraft.setBusinessCapacity(airCraftDto.getBusinessCapacity());
+
+        // burada böyle bir mapper yapmaya gerek yok. API DTO istiyorsa DTO objesini tam göndermek front end sorumluluğunda
+        /*if(airCraftDto.getName() != null) {
             airCraft.setName(airCraftDto.getName());
         }
         if(airCraftDto.getPurchaseDate() != null) {
@@ -31,7 +37,7 @@ public class AirCraftMapper {
         }
         if(airCraftDto.getBusinessCapacity() != null) {
             airCraft.setBusinessCapacity(airCraftDto.getBusinessCapacity());
-        }
+        }*/
         return airCraft;
     }
 }
