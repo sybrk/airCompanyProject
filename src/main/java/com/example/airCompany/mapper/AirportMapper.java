@@ -17,12 +17,14 @@ public class AirportMapper {
         Airport tmpAirport = new Airport();
         tmpAirport.setAirportName(airportDto.getAirportName());
         tmpAirport.setAirportCode(airportDto.getAirportCode());
+        tmpAirport.setLocation(LocationMapper.LocationDtoToEntity(airportDto.getLocation()));
         return tmpAirport;
     }
 
     public static Airport UpdateAirportEntityFromDto (Airport airport, AirportDto airportDto) {
         airport.setAirportName(airportDto.getAirportName());
         airport.setAirportCode(airportDto.getAirportCode());
+        airport.setLocation(LocationMapper.LocationDtoToEntity(airportDto.getLocation()));
         return airport;
     }
 }

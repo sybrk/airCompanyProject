@@ -15,4 +15,24 @@ public class FlightMapper {
                 flight.getDepartureTime()
         );
     }
+
+    public static Flight FlightDtoToEntity(FlightDto flightDto) {
+        Flight tmpFlight = new Flight();
+        tmpFlight.setFlightNumber(flightDto.getFlightNumber());
+        tmpFlight.setOriginAirport(AirportMapper.AirportDtoToEntity(flightDto.getOriginAirport()));
+        tmpFlight.setDestinationAirport(AirportMapper.AirportDtoToEntity(flightDto.getDestinationAirport()));
+        tmpFlight.setAirCraft(AirCraftMapper.AirCraftDtoToEntityMapper(flightDto.getAirCraft()));
+        tmpFlight.setDepartureTime(flightDto.getDepartureTime());
+        return tmpFlight;
+    }
+
+    public static Flight UpdateFlightEntityFromDto(Flight flight, FlightDto flightDto) {
+        flight.setFlightNumber(flightDto.getFlightNumber());
+        flight.setOriginAirport(AirportMapper.AirportDtoToEntity(flightDto.getOriginAirport()));
+        flight.setDestinationAirport(AirportMapper.AirportDtoToEntity(flightDto.getDestinationAirport()));
+        flight.setAirCraft(AirCraftMapper.AirCraftDtoToEntityMapper(flightDto.getAirCraft()));
+        flight.setDepartureTime(flightDto.getDepartureTime());
+
+        return flight;
+    }
 }
