@@ -6,7 +6,11 @@ import com.example.airCompany.entity.Airport;
 public class AirportMapper {
 
     public static AirportDto AirportEntityToDto (Airport airport) {
-        return new AirportDto(airport.getAirportName(), airport.getAirportCode());
+        return new AirportDto(
+                airport.getAirportName(),
+                airport.getAirportCode(),
+                LocationMapper.LocationEntityToDto(airport.getLocation())
+        );
     }
 
     public static Airport AirportDtoToEntity (AirportDto airportDto) {

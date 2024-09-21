@@ -1,5 +1,6 @@
 package com.example.airCompany.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,19 +16,25 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="Airports" , schema="sinan_air_company")
-public class Airport {
+@Table(name="Flights" , schema="sinan_air_company")
+public class Flight {
 
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
-    private String AirportName;
-    private String AirportCode;
+    private String FlightNumber;
     @ManyToOne
-    @JoinColumn(name = "LocationId")
-    private Location Location;
+    @JoinColumn(name = "OriginAirportId")
+    private Airport OriginAirport;
+    @ManyToOne
+    @JoinColumn(name = "DestinationAirportId")
+    private Airport DestinationAirport;
+    @ManyToOne
+    @JoinColumn(name = "AirCraftId")
+    private AirCraft AirCraft;
+    private Date DepartureTime;
 
     @Column(name = "Status")
     private String Status;
